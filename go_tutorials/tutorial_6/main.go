@@ -47,7 +47,7 @@ func main() {
 	// 	gallons.uint8
 	// } {25, 15}
 	myEngine.mpg = 20
-	fmt.Printf("Total miles left in tank: %v", myEngine.milesLeft())
+	fmt.Printf("Total miles left in tank: %v\n", myEngine.milesLeft())
 	canMakeIt(myEngine, 50)
 	canMakeIt(myEngine2, 50)
 	// go run .\go_tutorials\tutorial_6\main.go
