@@ -1,0 +1,31 @@
+- Equipments
+    - Hat
+    - Gloves
+    - Shoes
+    - Bag
+    - Badge
+    - Hairpin
+    - Amulet
+    - Necklace
+    - Wristwatch
+    - Unqiue item
+- Characters
+    - In order from Schale.gg
+    - Current student: Aru
+- Frames
+- Special mechanics
+- Weapons
+    - SG
+    - SMG
+    - AR
+    - GL
+    - HG
+    - SR
+    - RG
+    - MG
+    - RL
+    - MT
+    - FT
+- Enemies
+    - Raids
+    - JFD
