@@ -14,7 +14,7 @@
     - Current student: Aru
 - Frames
 - Special mechanics
-- Weapons
+- Weapons (may have to come back to this later as there is no easily accessable info for general weapon architype)
     - SG
     - SMG
     - AR

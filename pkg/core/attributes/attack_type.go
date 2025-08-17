@@ -1,4 +1,3 @@
-// Student attack types
 package attributes
 
 import (
@@ -7,14 +6,18 @@ import (
 	"strings"
 )
 
-// String representing student attack type
+// Int representing student and enemy attack type
 type AttackType int
 
+// All student and enemy attack types
+// "Siege" is a special attack type but no one uses it
+// "Siege" is effective against in-game cover which has the "Structure" defense type
 const (
 	Explosive AttackType = iota
 	Piercing
 	Mystic
 	Sonic
+	Siege
 	Normal
 	Unknown
 )
@@ -24,12 +27,12 @@ func (at AttackType) String() string {
 	return AttackTypeString[at]
 }
 
-// JSON marshalling for student attack type
+// JSON marshalling for attack type
 func (at AttackType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(AttackTypeString[at])
 }
 
-// JSON unmarshalling for student attack type
+// JSON unmarshalling for attack type
 func (at *AttackType) UnmarshalJSON(b []byte) error {
 	// Create a variable to hold the unmarshalled JSON string
 	var s string
@@ -51,12 +54,13 @@ func (at *AttackType) UnmarshalJSON(b []byte) error {
 	return errors.New("unrecognized student attack type")
 }
 
-// Student attack type as strings
+// Attack types as strings
 var AttackTypeString = [...]string {
 	"explosive",
 	"piercing",
 	"mystic",
 	"sonic",
+	"siege",
 	"normal",
 	"unknown",
 }
@@ -74,4 +78,17 @@ func StringtoAT(s string) AttackType {
 	return Unknown
 }
 
-// One more function here for stat increases
+// Convert attack type to attack type effectiveness
+func AtkTypeToEff(at AttackType) Stat {
+	switch at {
+	case Explosive:
+		return ExplosiveEff
+	case Piercing:
+		return PiercingEff
+	case Mystic:
+		return MysticEff
+	case Sonic:
+		return SonicEff
+	}
+	return -1
+}
