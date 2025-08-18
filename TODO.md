@@ -10,6 +10,8 @@
     - Wristwatch
     - Unqiue item
 - Characters
+    - Defense typing, terrain moods, and enemy sizes needs some consideration on implementation
+        - Will most likely be done in the character setup configuration or not be implemented (for now...)
     - In order from Schale.gg
     - Current student: Aru
 - Frames

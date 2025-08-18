@@ -22,7 +22,7 @@ const (
 	Unknown
 )
 
-// Allow attack types to be printed as strings
+// Return attack types as strings instead of ints
 func (at AttackType) String() string {
 	return AttackTypeString[at]
 }
@@ -65,7 +65,7 @@ var AttackTypeString = [...]string {
 	"unknown",
 }
 
-// Convert a attack type string to attack type
+// Convert an attack type string to attack type int
 func StringtoAT(s string) AttackType {
 	for i, v := range AttackTypeString {
 		// Check if attack type is valid
@@ -78,17 +78,17 @@ func StringtoAT(s string) AttackType {
 	return Unknown
 }
 
-// Convert attack type to attack type effectiveness
+// Convert attack type to attack type effectiveness percent
 func AtkTypeToEff(at AttackType) Stat {
 	switch at {
 	case Explosive:
-		return ExplosiveEff
+		return ExploEffPer
 	case Piercing:
-		return PiercingEff
+		return PierEffPer
 	case Mystic:
-		return MysticEff
+		return MystEffPer
 	case Sonic:
-		return SonicEff
+		return SonicEffPer
 	}
 	return -1
 }

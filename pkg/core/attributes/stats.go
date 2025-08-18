@@ -58,6 +58,67 @@ const (
 	BaseRecovBoost		// Base recovery boost
 	FlatRecovBoost		// Flat recovery boost
 	RecovBoostPer		// Recovery boost percent
-
-	// More to add...
+	BaseCostRecov		// Base cost recovery
+	FlatCostRecov		// Flat cost recovery
+	CostRecovPer		// Cost recovery percent
+	BaseAtkSpd			// Base attack speed
+	FlatAtkSpd			// Flat attack speed
+	AtkSpdPer			// Attack speed percent
+	BaseMoveSpd			// Base move speed
+	FlatMoveSpd			// Flat move speed
+	MoveSpdPer			// Move speed percent
+	BaseBlkRateBonus	// Base block rate bonus
+	FlatBlkRateBonus	// Flat block rate bonus
+	BlkRateBonusPer		// Block rate bonus percent
+	BaseMagCount		// Base magazine count
+	FlatMagCount		// Flat magazine count
+	MagCountPer			// Magazine count percent
+	NormAtkCost			// Normal attack cost
+	BaseDmgDealt		// Base damage dealt
+	FlatDmgDealt		// Flat damage dealt
+	DmgDealtPer			// Damage dealt percent
+	BaseExDmgDealt		// Base EX-special skill damage dealt
+	FlatExDmgDealt		// Flat EX-special skill damage dealt
+	ExDmgDealtPer		// EX-special skill damage dealt percent
+	BaseExploEff		// Base explosive effectiveness
+	FlatExploEff		// Flat explosive effectiveness
+	ExploEffPer			// Explosive effectiveness percent
+	BasePierEff			// Base piercing effectiveness
+	FlatPierEff			// Flat piercing effectiveness
+	PierEffPer			// Piercing effectivenss percent
+	BaseMystEff			// Base mystic effectiveness
+	FlatMystEff			// Flat mystic effectiveness
+	MystEffPer			// Mystic effectiveness percent
+	BaseSonicEff		// Base sonic effectiveness
+	FlatSonicEff		// Flat sonic effectiveness
+	SonicEffPer			// Sonic effectiveness percent
+	// Not sure what to do with "Siege" and "Normal" attack types as there are no modifiers to these types
+	// Leave them commented out for now
+	// BaseSiegeEff		// Base siege effectiveness
+	// FlatSiegeEff		// Flat siege effectiveness
+	// SiegeEffPer			// Siege effectiveness percent
+	// BaseNormEff			// Base normal effectiveness
+	// FlatNormEff			// Flat normal effectiveness
+	// NormEffPer			// Normal effectiveness percent
+	BaseBuffRent		// Base buff rentention
+	FlatBuffRent		// Flat buff rentention
+	BuffRentPer			// Buff rentention percent
+	BaseDebuffRent		// Base debuff rentention
+	FlatDebuffRent		// Flat debuff rentention
+	DebuffRentPer		// Debuff rentention percent
+	// For bosses, include groggy stat information
+	GrogGauge			// Groggy gauge
+	GrogDur				// Groggy duration
+	// Delimiter (not sure why this is needed, will have to do more research)
+	// Most likely for quickly making slice sizes
+	EndStatType
 )
+
+// Return stats as strings instead of ints
+func (s Stat) String() string {
+	return StatTypeString[s]
+}
+
+// Caluclations for final stats
+
+// More will be added ...
