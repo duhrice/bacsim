@@ -1,5 +1,10 @@
 package attributes
 
+import (
+	"strconv"
+	"strings"
+)
+
 type (
 	// Int representing student stat
 	Stat int
@@ -121,4 +126,63 @@ func (s Stat) String() string {
 
 // Caluclations for final stats
 
-// More will be added ...
+// Print stats in a clear and readable manner
+func PrettyPrintStats(stats []float64) string {
+	// Create string builder for string format
+	var sb strings.Builder
+	// Gp through slice of stats to print
+	for i, v := range stats {
+		if v > 0 {
+			// Get the corresponding stat
+			sb.WriteString(StatTypeString[i])
+			sb.WriteString(": ")
+			// Get the value corresponding to the stat
+			sb.WriteString(strconv.FormatFloat(v, 'f', 2, 32))
+			sb.WriteString(" ")
+		}
+	}
+	// Trim any empty spaces
+	return strings.Trim(sb.String(), " ")
+}
+
+// Print stats slice in a clear and readable manner
+func PrettyPrintStatsSlice(stats []float64) []string {
+	// Make a slice to store final formatted stat slice
+	r := make([]string, 0)
+	// Create string builder for string format
+	var sb strings.Builder
+	// Go through slice of stats to print
+	for i, v := range stats {
+		if v == 0 {
+			continue
+		}
+		// Get the corresponding stat
+		sb.WriteString(StatTypeString[i])
+		sb.WriteString(": ")
+		// Get the value corresponding to the stat
+		sb.WriteString(strconv.FormatFloat(v, 'f', 2, 32))
+		// Add formmated string to new slice
+		r = append(r, sb.String())
+		// Clear string builder for next stat in slice
+		sb.Reset()
+	}
+	// Return formatted slice of stats
+	return r
+}
+
+var StatTypeString = [...]string {
+
+}
+
+// Convert stat type string to stat type int
+func StrToStatType(s string) Stat {
+	for i, v := range StatTypeString {
+		// Check if stat type is valid
+		if v == s {
+			// Found valid stat type
+			return Stat(i)
+		}
+	}
+	// Invalid stat type found
+	return -1
+}
