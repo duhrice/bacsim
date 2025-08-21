@@ -3,6 +3,7 @@ package attributes
 import (
 	"strconv"
 	"strings"
+	"math"
 )
 
 type (
@@ -101,10 +102,10 @@ const (
 	// Leave them commented out for now
 	// BaseSiegeEff		// Base siege effectiveness
 	// FlatSiegeEff		// Flat siege effectiveness
-	// SiegeEffPer			// Siege effectiveness percent
-	// BaseNormEff			// Base normal effectiveness
-	// FlatNormEff			// Flat normal effectiveness
-	// NormEffPer			// Normal effectiveness percent
+	// SiegeEffPer		// Siege effectiveness percent
+	// BaseNormEff		// Base normal effectiveness
+	// FlatNormEff		// Flat normal effectiveness
+	// NormEffPer		// Normal effectiveness percent
 	BaseBuffRent		// Base buff rentention
 	FlatBuffRent		// Flat buff rentention
 	BuffRentPer			// Buff rentention percent
@@ -125,6 +126,48 @@ func (s Stat) String() string {
 }
 
 // Caluclations for final stats
+// For now, only include function calculations for flat numbers
+// Come back to this if functions calculations are needed for percent numbers
+func (s Stats) TotalHp() float64 {
+	return math.Round(s[BaseHp] + s[FlatHp]) * (1 + s[HpPer])
+}
+func (s Stats) TotalAtk() float64 {
+	return math.Round(s[BaseAtk] + s[FlatAtk]) * (1 + s[AtkPer])
+}
+func (s Stats) TotalDef() float64 {
+	return math.Round(s[BaseDef] + s[FlatDef]) * (1 + s[DefPer])
+}
+func (s Stats) TotalHeal() float64 {
+	return math.Round(s[BaseHeal] + s[FlatHeal]) * (1 + s[HealPer])
+}
+func (s Stats) TotalAcc() float64 {
+	return math.Round(s[BaseAcc] + s[FlatAcc]) * (1 + s[AccPer])
+}
+func (s Stats) TotalEva() float64 {
+	return math.Round(s[BaseEva] + s[FlatEva]) * (1 + s[EvaPer])
+}
+func (s Stats) TotalCrit() float64 {
+	return math.Round(s[BaseCR] + s[FlatCR]) * (1 + s[CRPer])
+}
+func (s Stats) TotalCritRes() float64 {
+	return math.Round(s[BaseCRRes] + s[FlatCRRes]) * (1 + s[CRResPer])
+}
+// Critical damage is a percent number. Uncomment this if needed
+// func (s Stats) TotalCritDmg() float64 {
+// 	return math.Round(s[BaseCD] + s[FlatCD]) * (1 + s[CDPer])
+// }
+// Critical damage resistance is a percent number. Uncomment this if needed
+// func (s Stats) TotalCritDmgRes() float64 {
+// 	return math.Round(s[BaseCDRes] + s[FlatCDRes]) * (1 + s[CDResPer])
+// }
+func (s Stats) TotalStab() float64 {
+	return math.Round(s[BaseStab] + s[FlatStab]) * (1 + s[StabPer])
+}
+// Stability rate is a percent number. Uncomment this if needed
+// func (s Stats) TotalStabRate() float64 {
+// 	return math.Round(s[BaseStabRate] + s[FlatStabRate]) * (1 + s[StabRatePer])
+// }
+// More to add ...
 
 // Print stats in a clear and readable manner
 func PrettyPrintStats(stats []float64) string {
@@ -242,38 +285,38 @@ var StatTypeString = [...]string {
 	"base_ex_dmg_dlt",		// Base EX-special skill damage dealt
 	"flat_ex_dmg_dlt",		// Flat EX-special skill damage dealt
 	"ex_dmg_dlt%",			// EX-special skill damage dealt percent
-	BaseExploEff		// Base explosive effectiveness
-	FlatExploEff		// Flat explosive effectiveness
-	ExploEffPer			// Explosive effectiveness percent
-	BasePierEff			// Base piercing effectiveness
-	FlatPierEff			// Flat piercing effectiveness
-	PierEffPer			// Piercing effectivenss percent
-	BaseMystEff			// Base mystic effectiveness
-	FlatMystEff			// Flat mystic effectiveness
-	MystEffPer			// Mystic effectiveness percent
-	BaseSonicEff		// Base sonic effectiveness
-	FlatSonicEff		// Flat sonic effectiveness
-	SonicEffPer			// Sonic effectiveness percent
+	"base_explo_eff",		// Base explosive effectiveness
+	"flat_explo_eff",		// Flat explosive effectiveness
+	"explo_eff%",			// Explosive effectiveness percent
+	"base_pier_eff",		// Base piercing effectiveness
+	"flat_pier_eff",		// Flat piercing effectiveness
+	"pier_eff%",			// Piercing effectiveness percent
+	"base_myst_eff",		// Base mystic effectiveness
+	"flat_myst_eff",		// Flat mystic effectiveness
+	"myst_eff%",			// Mystic effectiveness percent
+	"base_sonic_eff",		// Base sonic effectiveness
+	"flat_sonic_eff",		// Flat sonic effectiveness
+	"sonic_eff%",			// Sonic effectiveness percent
 	// Not sure what to do with "Siege" and "Normal" attack types as there are no modifiers to these types
 	// Leave them commented out for now
-	// BaseSiegeEff		// Base siege effectiveness
-	// FlatSiegeEff		// Flat siege effectiveness
-	// SiegeEffPer			// Siege effectiveness percent
-	// BaseNormEff			// Base normal effectiveness
-	// FlatNormEff			// Flat normal effectiveness
-	// NormEffPer			// Normal effectiveness percent
-	BaseBuffRent		// Base buff rentention
-	FlatBuffRent		// Flat buff rentention
-	BuffRentPer			// Buff rentention percent
-	BaseDebuffRent		// Base debuff rentention
-	FlatDebuffRent		// Flat debuff rentention
-	DebuffRentPer		// Debuff rentention percent
+	// "base_siege_eff",	// Base siege effectiveness
+	// "flat_siege_eff",	// Flat siege effectiveness
+	// "siege_eff%",		// Siege effectiveness percent
+	// "base_norm_eff",		// Base normal effectiveness
+	// "flat_norm_eff",		// Flat normal effectiveness
+	// "norm_eff%",			// Normal effectiveness percent
+	"base_buff_rent",		// Base buff rentention
+	"flat_buff_rent",		// Flat buff rentention
+	"buff_rent%",			// Buff rentention percent
+	"base_debuff_rent",		// Base debuff rentention
+	"flat_debuff_rent",		// Flat debuff rentention
+	"debuff_rent%",			// Debuff rentention percent
 	// For bosses, include groggy stat information
-	GrogGauge			// Groggy gauge
-	GrogDur				// Groggy duration
+	"grog_gauge",			// Groggy gauge
+	"grod_dur",				// Groggy duration
 	// Delimiter (not sure why this is needed, will have to do more research)
 	// Most likely for quickly making slice sizes
-	EndStatType
+	"end_stat_type",
 }
 
 // Convert stat type string to stat type int
