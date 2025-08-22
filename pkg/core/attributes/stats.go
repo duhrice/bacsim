@@ -6,6 +6,15 @@ import (
 	"math"
 )
 
+// Some calculations require only up to 2 decimal points of precision
+// Uncomment this function when needed
+// Use this function for that specific rounding
+// func roundFloat(val float64, precision uint) float64 {
+// 	ratio := math.Pow(10, float64(precision))
+// 	return math.Round(val*ratio) / ratio
+// }
+
+
 type (
 	// Int representing student stat
 	Stat int
@@ -52,7 +61,7 @@ const (
 	BaseStabRate		// Base stability rate
 	FlatStabRate		// Flat stability rate
 	StabRatePer			// Stability rate percent
-	BaseNormAtKRng		// Base normal attack range
+	BaseNormAtkRng		// Base normal attack range
 	FlatNormAtkRng		// Flat normal attack range
 	NormAtkRngPer		// Normal attack range percent
 	BaseCCPwr			// Base crowd control power
@@ -76,6 +85,9 @@ const (
 	BaseBlkRateBonus	// Base block rate bonus
 	FlatBlkRateBonus	// Flat block rate bonus
 	BlkRateBonusPer		// Block rate bonus percent
+	BaseDefPier			// Base defense piercing
+	FlatDefPier			// Flat defense piercing
+	DefPierPer			// Defense piercing percent
 	BaseMagCnt			// Base magazine count
 	FlatMagCnt			// Flat magazine count
 	MagCntPer			// Magazine count percent
@@ -83,6 +95,9 @@ const (
 	BaseDmgDlt			// Base damage dealt
 	FlatDmgDlt			// Flat damage dealt
 	DmgDltPer			// Damage dealt percent
+	BaseDmgRes			// Base damage resistance
+	FlatDmgRes			// Flat damage resistance
+	DmgResPer			// Damage resistance percent
 	BaseExDmgDlt		// Base EX-special skill damage dealt
 	FlatExDmgDlt		// Flat EX-special skill damage dealt
 	ExDmgDltPer			// EX-special skill damage dealt percent
@@ -154,19 +169,64 @@ func (s Stats) TotalCritRes() float64 {
 }
 // Critical damage is a percent number. Uncomment this if needed
 // func (s Stats) TotalCritDmg() float64 {
-// 	return math.Round(s[BaseCD] + s[FlatCD]) * (1 + s[CDPer])
+//	return roundFloat((s[BaseCD] + (s[FlatCD]/10000)) * (1 + s[CDPer]), 2)
 // }
 // Critical damage resistance is a percent number. Uncomment this if needed
 // func (s Stats) TotalCritDmgRes() float64 {
-// 	return math.Round(s[BaseCDRes] + s[FlatCDRes]) * (1 + s[CDResPer])
+//	return roundFloat((s[BaseCDRes] + (s[FlatCDRes]/10000)) * (1 + s[CDResPer]), 2)
 // }
 func (s Stats) TotalStab() float64 {
 	return math.Round(s[BaseStab] + s[FlatStab]) * (1 + s[StabPer])
 }
 // Stability rate is a percent number. Uncomment this if needed
 // func (s Stats) TotalStabRate() float64 {
-// 	return math.Round(s[BaseStabRate] + s[FlatStabRate]) * (1 + s[StabRatePer])
+//	return roundFloat((s[BaseStabRate] + (s[FlatStabRate]/10000)) * (1 + s[StabRatePer]), 2)
 // }
+func (s Stats) TotalNormAtkRng() float64 {
+	return math.Round(s[BaseNormAtkRng] + s[FlatNormAtkRng]) * (1 + s[NormAtkRngPer])
+}
+func (s Stats) TotalCCPwr() float64 {
+	return math.Round(s[BaseCCPwr] + s[FlatCCPwr]) * (1 + s[CCPwrPer])
+}
+func (s Stats) TotalCCRes() float64 {
+	return math.Round(s[BaseCCRes] + s[FlatCCRes]) * (1 + s[CCResPer])
+}
+func (s Stats) TotalRecovBst() float64 {
+	return math.Round(s[BaseRecovBst] + s[FlatRecovBst]) * (1 + s[RecovBstPer])
+}
+func (s Stats) TotalCostRecov() float64 {
+	return math.Round(s[BaseCostRecov] + s[FlatCostRecov]) * (1 + s[CostRecovPer])
+}
+// Attack speed is a percent number. Uncomment this if needed
+// func (s Stats) TotalAtkSpd() float64 {
+//	return roundFloat((s[BaseAtkSpd] + (s[FlatAtkSpd]/10000)) * (1 + s[AtkSpdPer]), 2)
+// }
+func (s Stats) TotalMovSpd() float64 {
+	return math.Round(s[BaseMoveSpd] + s[FlatMoveSpd]) * (1 + s[MoveSpdPer])
+}
+// Block rate bonus is a percent number. Uncomment this if needed
+// func (s Stats) TotalBlkRateBonus() float64 {
+//	return roundFloat((s[BaseBlkRateBonus] + (s[FlatBlkRateBonus]/10000)) * (1 + s[BlkRateBonusPer]), 2)
+// }
+func (s Stats) TotalDefPier() float64 {
+	return math.Round(s[BaseDefPier] + s[FlatDefPier]) * (1 + s[DefPierPer])
+}
+func (s Stats) TotalMagCnt() float64 {
+	return math.Round(s[BaseMagCnt] + s[FlatMagCnt]) * (1 + s[MagCntPer])
+}
+// Damage dealt is a percent number. Uncomment this if needed
+// func (s Stats) TotalDmgDlt() float64 {
+//	return roundFloat((s[BaseDmgDlt] + (s[FlatDmgDlt]/10000)) * (1 + s[DmgDltPer]), 2)
+// }
+// Damage resist is a percent number. Uncomment this if needed
+// func (s Stats) TotalDmgRes() float64 {
+//	return roundFloat((s[BaseDmgRes] + (s[FlatDmgRes]/10000)) * (1 + s[DmgResPer]), 2)
+// }
+// Ex special skill damage dealt is a percent number. Uncomment this if needed
+// func (s Stats) TotalExDmgDlt() float64 {
+//	return roundFloat((s[BaseExDmgDlt] + (s[FlatExDmgDlt]/10000)) * (1 + s[ExDmgDltPer]), 2)
+// }
+
 // More to add ...
 
 // Print stats in a clear and readable manner
@@ -275,6 +335,9 @@ var StatTypeString = [...]string {
 	"base_blk_rate_bonus",	// Base block rate bonus
 	"flat_blk_rate_bonus",	// Flat block rate bonus
 	"blk_rate_bonus%",		// Block rate bonus percent
+	"base_def_pier",		// Base defense piercing
+	"flat_def_pier",		// Flat defense piercing
+	"def_pier%",			// Defense piercing percent
 	"base_mag_cnt",			// Base magazine count
 	"flat_mag_cnt",			// Flat magazine count
 	"mag_cnt%",				// Magazine count percent
@@ -282,6 +345,9 @@ var StatTypeString = [...]string {
 	"base_dmg_dlt",			// Base damage dealt
 	"flat_dmg_dlt",			// Flat damage dealt
 	"dmg_dlt%",				// Damage dealt percent
+	"base_dmg_res",			// Base damage resistance
+	"flat_Dmg_res",			// Flat damage resistance
+	"dmg_res%",				// Damage resistance percent
 	"base_ex_dmg_dlt",		// Base EX-special skill damage dealt
 	"flat_ex_dmg_dlt",		// Flat EX-special skill damage dealt
 	"ex_dmg_dlt%",			// EX-special skill damage dealt percent
