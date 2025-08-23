@@ -14,7 +14,6 @@ import (
 // 	return math.Round(val*ratio) / ratio
 // }
 
-
 type (
 	// Int representing student stat
 	Stat int
@@ -226,8 +225,30 @@ func (s Stats) TotalMagCnt() float64 {
 // func (s Stats) TotalExDmgDlt() float64 {
 //	return roundFloat((s[BaseExDmgDlt] + (s[FlatExDmgDlt]/10000)) * (1 + s[ExDmgDltPer]), 2)
 // }
-
-// More to add ...
+// Explosive effectiveness is a percent number. Uncomment this if needed
+// func (s Stats) TotalExploEff() float64 {
+//	return roundFloat((s[BaseExploEff] + (s[FlatExploEff]/10000)) * (1 + s[ExploEffPer]), 2)
+// }
+// Piercing effectiveness is a percent number. Uncomment this if needed
+// func (s Stats) TotalPierEff() float64 {
+//	return roundFloat((s[BasePierEff] + (s[FlatPierEff]/10000)) * (1 + s[PierEffPer]), 2)
+// }
+// Mystic effectiveness is a percent number. Uncomment this if needed
+// func (s Stats) TotalMystEff() float64 {
+//	return roundFloat((s[BaseMystEff] + (s[FlatMystEff]/10000)) * (1 + s[MystEffPer]), 2)
+// }
+// Sonic effectiveness is a percent number. Uncomment this if needed
+// func (s Stats) TotalSonicEff() float64 {
+//	return roundFloat((s[BaseSonicEff] + (s[FlatSonicEff]/10000)) * (1 + s[SonicEffPer]), 2)
+// }
+// Buff rentention is a percent number. Uncomment this if needed
+// func (s Stats) TotalBuffRent() float64 {
+//	return roundFloat((s[BaseBuffRent] + (s[FlatBuffRent]/10000)) * (1 + s[BuffRentPer]), 2)
+// }
+// Debuff rentention is a percent number. Uncomment this if needed
+// func (s Stats) TotalDebuffRent() float64 {
+//	return roundFloat((s[BaseDebuffRent] + (s[FlatDebuffRent]/10000)) * (1 + s[DebuffRentPer]), 2)
+// }
 
 // Print stats in a clear and readable manner
 func PrettyPrintStats(stats []float64) string {
