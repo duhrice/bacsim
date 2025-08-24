@@ -28,6 +28,16 @@
     - RL
     - MT
     - FT
+    - Stats
+        - Normal attack range
+        - Magazine count
+        - Normal attack cost
+        - Attack ready
+        - Mount/unmount duration
+        - Attack duration
+        - Attack delay
+        - Start/end delay
+        - Reload duration
 - Enemies
     - Raids
     - JFD

@@ -8,7 +8,6 @@ import (
 
 // Some calculations require only up to 2 decimal points of precision
 // Uncomment this function when needed
-// Use this function for that specific rounding
 // func roundFloat(val float64, precision uint) float64 {
 // 	ratio := math.Pow(10, float64(precision))
 // 	return math.Round(val*ratio) / ratio
@@ -60,9 +59,6 @@ const (
 	BaseStabRate		// Base stability rate
 	FlatStabRate		// Flat stability rate
 	StabRatePer			// Stability rate percent
-	BaseNormAtkRng		// Base normal attack range
-	FlatNormAtkRng		// Flat normal attack range
-	NormAtkRngPer		// Normal attack range percent
 	BaseCCPwr			// Base crowd control power
 	FlatCCPwr			// Flat crowd control power
 	CCPwrPer			// Crowd control power percent
@@ -87,10 +83,6 @@ const (
 	BaseDefPier			// Base defense piercing
 	FlatDefPier			// Flat defense piercing
 	DefPierPer			// Defense piercing percent
-	BaseMagCnt			// Base magazine count
-	FlatMagCnt			// Flat magazine count
-	MagCntPer			// Magazine count percent
-	NormAtkCost			// Normal attack cost
 	BaseDmgDlt			// Base damage dealt
 	FlatDmgDlt			// Flat damage dealt
 	DmgDltPer			// Damage dealt percent
@@ -181,9 +173,6 @@ func (s Stats) TotalStab() float64 {
 // func (s Stats) TotalStabRate() float64 {
 //	return roundFloat((s[BaseStabRate] + (s[FlatStabRate]/10000)) * (1 + s[StabRatePer]), 2)
 // }
-func (s Stats) TotalNormAtkRng() float64 {
-	return math.Round(s[BaseNormAtkRng] + s[FlatNormAtkRng]) * (1 + s[NormAtkRngPer])
-}
 func (s Stats) TotalCCPwr() float64 {
 	return math.Round(s[BaseCCPwr] + s[FlatCCPwr]) * (1 + s[CCPwrPer])
 }
@@ -209,9 +198,6 @@ func (s Stats) TotalMovSpd() float64 {
 // }
 func (s Stats) TotalDefPier() float64 {
 	return math.Round(s[BaseDefPier] + s[FlatDefPier]) * (1 + s[DefPierPer])
-}
-func (s Stats) TotalMagCnt() float64 {
-	return math.Round(s[BaseMagCnt] + s[FlatMagCnt]) * (1 + s[MagCntPer])
 }
 // Damage dealt is a percent number. Uncomment this if needed
 // func (s Stats) TotalDmgDlt() float64 {
@@ -254,7 +240,7 @@ func (s Stats) TotalMagCnt() float64 {
 func PrettyPrintStats(stats []float64) string {
 	// Create string builder for string format
 	var sb strings.Builder
-	// Gp through slice of stats to print
+	// Go through slice of stats to print
 	for i, v := range stats {
 		if v > 0 {
 			// Get the corresponding stat
@@ -332,9 +318,6 @@ var StatTypeString = [...]string {
 	"base_stab_rate",		// Base stability rate
 	"flat_stab_rate",		// Flat stability rate
 	"stab_rate%",			// Stability rate percent
-	"base_norm_atk_rng",	// Base normal attack range
-	"flat_norm_atk_rng",	// Flat normal attack range
-	"norm_atk_rng%",		// Normal attack range percent
 	"base_cc_pwr",			// Base crowd control power
 	"flat_cc_pwr",			// Flat crowd control power
 	"cc_pwr%",				// Crowd control power percent
@@ -359,10 +342,6 @@ var StatTypeString = [...]string {
 	"base_def_pier",		// Base defense piercing
 	"flat_def_pier",		// Flat defense piercing
 	"def_pier%",			// Defense piercing percent
-	"base_mag_cnt",			// Base magazine count
-	"flat_mag_cnt",			// Flat magazine count
-	"mag_cnt%",				// Magazine count percent
-	"norm_atk_cost",		// Normal attack cost
 	"base_dmg_dlt",			// Base damage dealt
 	"flat_dmg_dlt",			// Flat damage dealt
 	"dmg_dlt%",				// Damage dealt percent
