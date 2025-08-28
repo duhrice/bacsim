@@ -28,7 +28,7 @@
     - RL
     - MT
     - FT
-    - Stats
+    - Weapon specific stats
         - Normal attack range
         - Magazine count
         - Normal attack cost
@@ -41,3 +41,4 @@
 - Enemies
     - Raids
     - JFD
+    - Common
