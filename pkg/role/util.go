@@ -1,5 +1,9 @@
 package role
 
+import (
+	
+)
+
 func (rt RoleType) String() string {
 	return RoleTypeString[rt]
 }
