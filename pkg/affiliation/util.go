@@ -1,4 +1,4 @@
-package school
+package affiliation
 
 import (
 
@@ -18,4 +18,20 @@ func StrToSchool(s string) School {
 	}
 	// Invalid school found
 	return Unknown
+}
+
+func (c Club) String() string {
+	return ClubString[c]
+}
+
+func StrToClub(s string) Club {
+	for i, v := range ClubString {
+		// Check if club is valid
+		if v == s {
+			// Found valid club
+			return Club(i)
+		}
+	}
+	// Invalid club found
+	return None
 }
