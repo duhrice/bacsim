@@ -25,7 +25,7 @@ const (
 	Valkyrie				// Valkyrie Police Academy
 	SRT						// SRT Special Academy
 	WildHunt				// Wild Hunt Academy of Arts
-	Etc
+	Etc						// For "Hatsune Miku"
 	Unknown
 )
 
