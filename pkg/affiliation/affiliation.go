@@ -188,7 +188,7 @@ var ClubString = [...]string {
 	"public_safety_bureau",
 	// SRT Special Academy
 	"rabbit_squad",
-	"fox_Squad",					// No playable students from this club yet
+	"fox_squad",					// No playable students from this club yet
 	// Wild Hunt Academy of Arts (being developed, come back to this frequently)
 	"occult_research_society",
 	// Etc
