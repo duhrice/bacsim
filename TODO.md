@@ -10,7 +10,7 @@
     - Wristwatch
     - Unqiue item
 - Characters
-    - Modifiers, info, and enemy sizes needs some consideration on implementation
+    - Modifiers and info needs some consideration on implementation
         - Will most likely be done in the character setup configuration or not be implemented (for now...)
     - In order from Schale.gg
     - Current student: Aru
