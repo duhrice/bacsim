@@ -19,3 +19,23 @@ func StrToMood(s string) Mood {
 	// Invalid mood found
 	return Unknown
 }
+
+// Terrain combat mood multiplier
+func MoodtoFloat(m Mood) float32 {
+	switch m {
+	case D:
+		return 0.8
+	case C:
+		return 0.9
+	case B:
+		return 1.0
+	case A:
+		return 1.1
+	case S:
+		return 1.2
+	case SS:
+		return 1.3
+	}
+	// If it reaches this point, something is wrong
+	return -1
+}
