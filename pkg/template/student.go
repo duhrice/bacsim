@@ -44,6 +44,11 @@ type StudentWrapper struct {
 	Stats []float64					// Array containing all possible student stats
 	// Student equipment information
 	Equipment map[equipment.EquipmentType]Accessory
+	// Student modifiers information
+	Buffs []Modifier
+	Debuffs []Modifier
+	CrowdControl []Modifier
+	Special	[]Modifier				// Includes unique effects, stacks, mechanics provided or used by students
 
 	Student							// All students should use the same methods, hence the interface
 }
@@ -69,7 +74,18 @@ type StudentSkills struct {
 // Third: charm, watch, necklace
 // The accessory for each equipment slot is tiered from T0 - T10
 // Each tier has levels from 1 to 10
+// None of the above 2 lines applies for unique items which only has 2 tiers and no levels
 type Accessory struct {
 	Tier int
 	Level int
+}
+
+// Modifiers are things that affect student stats and gameplay
+// Two modifiers from the same source can not stack (i.e. two attack buffs from an ex-skill) except for special statuses
+// Only the most recent modifier from a source is applied. The former will be overwritten
+// These modifiers can be targeted at allies, self, enemies, or in AOE
+type Modifier struct {
+	ID int
+	Source int
+	Duration int
 }
