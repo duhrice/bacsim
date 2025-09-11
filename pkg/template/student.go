@@ -11,6 +11,7 @@ import (
 	"github.com/duhrice/bacsim/pkg/position"
 	"github.com/duhrice/bacsim/pkg/role"
 	"github.com/duhrice/bacsim/pkg/weapon"
+	"github.com/duhrice/bacsim/pkg/modifier"
 )
 
 // What methods are shared by all students?
@@ -81,11 +82,11 @@ type Accessory struct {
 }
 
 // Modifiers are things that affect student stats and gameplay
-// Two modifiers from the same source can not stack (i.e. two attack buffs from an ex-skill) except for special statuses
+// Two similar modifiers from the same source can not stack (i.e. two attack buffs from an ex-skill) except for special statuses
 // Only the most recent modifier from a source is applied. The former will be overwritten
 // These modifiers can be targeted at allies, self, enemies, or in AOE
 type Modifier struct {
-	ID int
+	ID modifier.ModType
 	Source int
 	Duration int
 }
