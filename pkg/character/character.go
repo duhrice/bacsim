@@ -224,7 +224,8 @@ const (
 	NewYearIzumi
 	Rei
 	PartTimerSumire
-	// All students up to week of August 31, 2025 (Global). More characters to add in the future
+	DressSaori
+	// All students up to week of September 8, 2025 (Global). More characters to add in the future
 	CharLen					// Delimiter for quickly making container sizes
 )
 
@@ -447,7 +448,8 @@ var CharString = [...]string {
 	"new_year_izumi",
 	"rei",
 	"part_timer_sumire",
-	// All students up to week of August 31, 2025 (Global). More characters to add in the future
+	"dress_saori",
+	// All students up to week of September 8, 2025 (Global). More characters to add in the future
 	// Not necessary to have string equivalent for "CharLen", but created one just to be safe
 	"",
 }
