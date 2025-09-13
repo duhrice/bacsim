@@ -1,4 +1,4 @@
-package modifer
+package modifier
 
 import (
 
@@ -107,5 +107,18 @@ const (
 	FocusedAssault		// Focused assault
 	DefPen				// Defense peneration
 	// Crowd control
+	Blind				// Blind
+	Charm				// Charm
+	Confusion			// Confusion
+	EMP					// EMP
+	Fear				// Fear
+	Inoperative			// ??? (again, what kind of debuff is this???)
+	MindControl			// Mind control
+	Paralysis			// Paralysis
+	Provoke				// Provoke
+	Purify				// ??? (jusy why at this point???)
+	Silence				// Silence
+	Freeze				// Freeze
+	Stun				// Stun
 	// Special
 )
