@@ -88,5 +88,6 @@ type Accessory struct {
 type Modifier struct {
 	ID modifier.ModType
 	Source int
+	Value float32
 	Duration int
 }
