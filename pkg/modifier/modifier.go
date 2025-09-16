@@ -280,22 +280,22 @@ var ModTypeString = [...]string {
 	ExDmgDealtDown			// EX skill damage dealt down
 	IncomingExDmgUp			// Incoming EX skill damage up
 	// Both
-	FocusedAssault			// Focused assault
-	DefPen					// Defense peneration
+	"focused_assault",		// Focused assault
+	"def_pen",				// Defense peneration
 	// Crowd control
-	Blind					// Blind
-	Charm					// Charm
-	Confusion				// Confusion
-	EMP						// EMP
-	Fear					// Fear
-	Inoperative				// ???*
-	MindControl				// Mind control
-	Paralysis				// Paralysis
-	Provoke					// Provoke
-	Purify					// ???*
-	Silence					// Silence
-	Freeze					// Freeze
-	Stun					// Stun
+	"blind",				// Blind
+	"charm",				// Charm
+	"confusion",			// Confusion
+	"emp",					// EMP
+	"fear",					// Fear
+	"inoperative",			// ???*
+	"mind_control",			// Mind control
+	"paralysis",			// Paralysis
+	"provoke",				// Provoke
+	"purify",				// ???*
+	"silence",				// Silence
+	"freeze",				// Freeze
+	"stun",					// Stun
 	// Special
 	AccumDmg				// Accumulate damage
 	EnChargeN				// Energy charge none
