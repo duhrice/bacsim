@@ -348,11 +348,12 @@ var ModTypeString = [...]string {
 	BattleSenseF			// Battle sense full
 	// All student special effects up to week of September 8, 2025 (Global). More effects to add in the future
 	// Below are some boss/raid specific special effects
-	DebuffCountGreen		// Debuff count green
-	DebuffCountYellow		// Debuff count yellow
-	DebuffCountRed			// Debuff count red
-	Obelisk					// Obelisk
-	BallistaFiring			// Ballista firing
-	UnstableFlame			// Unstable flame
-	ModLen					// Delimiter for quickly making container sizes
+	"debuff_count_green",	// Debuff count green
+	"debuff_count_yellow",	// Debuff count yellow
+	"debuff_count_red",		// Debuff count red
+	"obelisk",				// Obelisk
+	"ballista_firing",		// Ballista firing
+	"unstable_flame",		// Unstable flame
+	// Not necessary to have string equivalent for "ModLen", but created one just to be safe
+	"",
 }
