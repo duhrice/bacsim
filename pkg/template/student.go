@@ -12,6 +12,7 @@ import (
 	"github.com/duhrice/bacsim/pkg/role"
 	"github.com/duhrice/bacsim/pkg/weapon"
 	"github.com/duhrice/bacsim/pkg/modifier"
+	"github.com/duhrice/bacsim/pkg/source"
 )
 
 // What methods are shared by all students?
@@ -87,7 +88,7 @@ type Accessory struct {
 // These modifiers can be targeted at allies, self, enemies, or in AOE
 type Modifier struct {
 	ID modifier.ModType
-	Source int
+	Source source.SourceType
 	Value float32
 	Duration int
 }
