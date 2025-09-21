@@ -15,13 +15,21 @@ import (
 	"github.com/duhrice/bacsim/pkg/source"
 )
 
+var DEFAULT_STAR_SCALING = [3][5]float32 {
+	{1, 1.1, 1.22, 1.36, 1.53},			// ATK scaling
+	{1, 1.05, 1.12, 1.21, 1.35},		// HP scaling
+	{1, 1.075, 1.175, 1.295, 1.445},	// Healing scaling
+}
+
+const DEFAULT_STAT_GROWTH_TYPE string = "standard"
+
 // What methods are shared by all students?
-type Student interface {
+type StudentHelper interface {
 
 }
 
 // What parameters should all students have?
-type StudentWrapper struct {
+type Student struct {
 	// Basic student information
 	Index character.Char			// All students have an assigned index
 	StudentStars int				// Student base rarity ranges from 1 to 3 stars. All students can have max of 5.
@@ -52,7 +60,7 @@ type StudentWrapper struct {
 	CrowdControl []Modifier
 	Special	[]Modifier				// Includes unique effects, stacks, mechanics provided or used by students
 
-	Student							// All students should use the same methods, hence the interface
+	StudentHelper					// All students should use the same methods, hence the interface
 }
 
 // All students have three terrain moods (city/urban/street; desert/field/outdoor; indoor)
@@ -91,4 +99,19 @@ type Modifier struct {
 	Source source.SourceType
 	Value float32
 	Duration int
+}
+
+// Constructor function for creating a new student
+func NewStudent(
+	name string,	
+	level int,
+	stars int,				// I think it is current student stars, not base student stars (I could be wrong though)
+	scaling [][]float32,	// Student HP, ATK, and DEf scales based on star level
+	growthType string,		// Some students may have unique stat growths
+) (*Student, error) {
+	s := &Student{
+
+	}
+
+	return s, nil
 }
