@@ -1,15 +1,11 @@
 package template
 
 import (
-	"github.com/duhrice/bacsim/pkg/affiliation"
 	"github.com/duhrice/bacsim/pkg/attack"
 	"github.com/duhrice/bacsim/pkg/character"
-	"github.com/duhrice/bacsim/pkg/class"
 	"github.com/duhrice/bacsim/pkg/defense"
 	"github.com/duhrice/bacsim/pkg/equipment"
 	"github.com/duhrice/bacsim/pkg/mood"
-	"github.com/duhrice/bacsim/pkg/position"
-	"github.com/duhrice/bacsim/pkg/role"
 	"github.com/duhrice/bacsim/pkg/weapon"
 	"github.com/duhrice/bacsim/pkg/modifier"
 	"github.com/duhrice/bacsim/pkg/source"
@@ -23,6 +19,8 @@ var DEFAULT_STAR_SCALING = [3][5]float32 {
 
 const DEFAULT_STAT_GROWTH_TYPE string = "standard"
 
+type fn func() error		// May need to modify this later to take "target" as an argument
+
 // What methods are shared by all students?
 type StudentHelper interface {
 
@@ -31,17 +29,11 @@ type StudentHelper interface {
 // What parameters should all students have?
 type Student struct {
 	// Basic student information
-	Index character.Char			// All students have an assigned index
 	StudentStars int				// Student base rarity ranges from 1 to 3 stars. All students can have max of 5.
 	StudentLevel int				// Current student level. Current max student level is 90 (will be 100 in future updates)
-	Class class.ClassType			// Striker or special class
-	Role role.RoleType				// Team role (tank, damage dealer, healer, support, tactical support)
 	Attack attack.AttackType		// Attack type (explosive, piercing, mystic, sonic) (no students use normal)
 	Defense defense.DefenseType		// Defense type (light, heavy, special, elastic) (no students use normal)
-	School affiliation.School		// Kivotos schools
-	Club affiliation.Club			// School clubs
 	TerrainMoods CombatPower		
-	Position position.PositionType	// Student positions in a team (front, middle, back)
 	BondLevel int					// Student bond level
 	AddBondLevel int				// Additional bond levels for students with variants
 	// Basic weapon infomation
@@ -59,6 +51,9 @@ type Student struct {
 	Debuffs []Modifier
 	CrowdControl []Modifier
 	Special	[]Modifier				// Includes unique effects, stacks, mechanics provided or used by students
+	// Student actions information
+	Action []fn						// Action that student is currently performing
+	ActionQueue []fn				// Action queue for what student should perform next
 
 	StudentHelper					// All students should use the same methods, hence the interface
 }
