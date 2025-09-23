@@ -1,11 +1,8 @@
 package template
 
 import (
-	"github.com/duhrice/bacsim/pkg/attack"
 	"github.com/duhrice/bacsim/pkg/character"
-	"github.com/duhrice/bacsim/pkg/defense"
 	"github.com/duhrice/bacsim/pkg/equipment"
-	"github.com/duhrice/bacsim/pkg/mood"
 	"github.com/duhrice/bacsim/pkg/weapon"
 	"github.com/duhrice/bacsim/pkg/modifier"
 	"github.com/duhrice/bacsim/pkg/source"
@@ -29,11 +26,9 @@ type StudentHelper interface {
 // What parameters should all students have?
 type Student struct {
 	// Basic student information
+	StudentInfo character.CharInfo
 	StudentStars int				// Student base rarity ranges from 1 to 3 stars. All students can have max of 5.
 	StudentLevel int				// Current student level. Current max student level is 90 (will be 100 in future updates)
-	Attack attack.AttackType		// Attack type (explosive, piercing, mystic, sonic) (no students use normal)
-	Defense defense.DefenseType		// Defense type (light, heavy, special, elastic) (no students use normal)
-	TerrainMoods CombatPower		
 	BondLevel int					// Student bond level
 	AddBondLevel int				// Additional bond levels for students with variants
 	// Basic weapon infomation
@@ -56,13 +51,6 @@ type Student struct {
 	ActionQueue []fn				// Action queue for what student should perform next
 
 	StudentHelper					// All students should use the same methods, hence the interface
-}
-
-// All students have three terrain moods (city/urban/street; desert/field/outdoor; indoor)
-type CombatPower struct {
-	Urban mood.Mood
-	Field mood.Mood
-	Indoor mood.Mood
 }
 
 // All students have four skills that can be leveled to a max of 10 (labelled as MAX in game)(ex, basic, enhanced, sub)
